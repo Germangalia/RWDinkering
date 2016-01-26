@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--Web apps/ Hybrids app: Ionic/Cordova-->
+    <!--<meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+
+    <!--RWD-->
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Google font -->
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+
+    <style>
+
+        .container{
+            display: flex;
+            display: -webkit-flex;
+            flex-flow: row wrap;
+            -bebkit-flex-flow: row wrap;
+        }
+        
+        .container-inner{
+            width: 100%;
+        }
+
+        .columna1,.columna2,.columna3{
+            width: 100%;
+        }
+        .columna1{
+            background: red;
+        }
+        .columna2{
+            background: gray;
+        }
+        .columna3{
+            background: blue;
+        }
+
+
+        @media (min-width: 600px) {
+            .columna1 {
+                width: 15%;
+                height: 100vh;
+            }
+            
+            .container-inner {
+                width: 85%;
+            }
+            
+        }
+
+        @media (min-width: 800px) {
+            .container{
+                width: 800px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+        }
+        .container{
+
+        }
+
+
+    </style>
+
+    <title>Document</title>
+</head>
+<body>
+
+<div class="container">
+    <section class="columna1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, ad aut cum deleniti dolor magnam mollitia, officia perferendis quo reiciendis reprehenderit repudiandae sequi similique sit tempore ut vel voluptate, voluptatibus?</section>
+</div>  
+<div class="container-inner">  
+    <section class="columna2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto autem distinctio dolorum eius expedita illo laudantium maxime minus nihil nobis odit officiis, placeat praesentium quam qui saepe tenetur vel veniam.</section>
+    <section class="columna3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquid atque aut cum error expedita harum, id laborum nam nemo omnis provident quis saepe, sunt unde? Ab eaque laudantium sint!</section>
+</div>
+
+</body>
+</html>
