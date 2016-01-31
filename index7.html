@@ -1,20 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!--Web apps/ Hybrids app: Ionic/Cordova-->
-    <!--<meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
-
-    <!--RWD-->
-    <meta name="viewport" content="width=device-width">
-
-    <!-- Google font -->
-    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
     <style>
-
         .container{
             display: flex;
             display: -webkit-flex;
@@ -57,73 +48,91 @@
             transform: translate(0,0);
         }
 
-
+        #sidebar-toggle {
+            background: cornflowerblue;
+            border-radius: 3px;
+            display: block;
+            position: relative;
+            padding: 10px 7px;
+            float: left;
+            -webkit-transition:  -webkit-transform 0.3s ease-out;
+            -moz-transition: -moz-transform 0.3s ease-out;
+            -ms-transition:  -ms-transform 0.3s ease-out;
+            -o-transition: -o-transform 0.3s ease-out;
+            transition: transform 0.3s ease-out;
+            z-index: 1;
+        }
+        #sidebar-toggle .bar{
+            display: block;
+            width: 18px;
+            margin-bottom: 3px;
+            height: 2px;
+            background-color: #fff;
+            border-radius: 1px;
+        }
+        #sidebar-toggle .bar:last-child{
+            margin-bottom: 0;
+        }
+        #sidebar-toggle.open {
+            -webkit-transform: translate(250px,0);
+            -moz-transform: translate(250px,0);
+            -ms-transform: translate(250px,0);
+            -o-transform: translate(250px,0);
+            transform: translate(250px,0);
+        }
     </style>
 
-    <title>Document</title>
+    <title>Off canvas</title>
 </head>
 <body>
 
-<div  id="burger" >
-        <img src="http://jeffreydejong.com/img/header/icon_hamburger_menu.png"/>
-</div>
-
 <div class="container">
-
-    <section id="sidepanel" class="columna1"><nav class="navbar navbar-default" role="navigation">
-    	<!-- Brand and toggle get grouped for better mobile display -->
-    	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquam animi cupiditate eos magnam odio provident, veniam voluptas? A aliquid animi aut deserunt eius nostrum possimus quos. Aspernatur, nihil, quas!</p>
+    <section id="sidePanel" class="columna1">
         <ul>
-            <li>Lorem ipsum</li>
-            <li>Aliquam consequuntur</li>
-            <li>Corporis facilis</li>
-            <li>Dolore ea facere</li>
-            <li>Accusamus architecto</li>
+            <li>Lorem ipsum.</li>
+            <li>Aliquam, officiis.</li>
+            <li>Delectus, esse!</li>
+            <li>Odio, tempora?</li>
+            <li>Iste, nihil?</li>
         </ul>
-    </nav></section>
+    </section>
 
-    <section id="mainpanel" class="columna2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto autem distinctio dolorum eius expedita illo laudantium maxime minus nihil nobis odit officiis, placeat praesentium quam qui saepe tenetur vel veniam.</section>
+    <section id="mainPanel" class="columna2">
+        <a href="#" id="sidebar-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar">  </span>
+        </a><br /><br />
+        Lorem ipsum dolor sit amet.</section>
+
 </div>
 
+<!--Jquery-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<!-- Hammer js -->
 <script src="http://hammerjs.github.io/dist/hammer.min.js"></script>
 <script>
     (function(){
-        var sidepanel = document.getElementById('sidepanel');
-        var mainpanel = document.getElementById('mainpanel');
-        var hammerPanel = new Hammer(mainpanel);
-
+        var sidePanel = document.getElementById('sidePanel');
+        var mainPanel = document.getElementById('mainPanel');
+        var sidebarToggle = document.getElementById('sidebar-toggle');
+        var hammerPanel = new Hammer(mainPanel);
+        var hammerToggle = new Hammer.Manager(sidebarToggle);
+        hammerToggle.add( new Hammer.Tap({ event: 'singletap' }) );
         hammerPanel
                 .on('swiperight', function(e){
-                    sidepanel.classList.toggle('open');
+                    sidePanel.classList.toggle('open');
                 })
                 .on('swipeleft', function(e){
-                    sidepanel.classList.toggle('open');
+                    sidePanel.classList.toggle('open');
                 });
+        hammerToggle.on("singletap", function(ev) {
+            sidePanel.classList.toggle('open');
+            sidebarToggle.classList.toggle('open');
+        });
     }());
-
 </script>
-<script>
-    (function(){
-        var sidepanel2 = document.getElementById('sidepanel');
-        var burger = document.getElementById('burger');
 
-        var hammerPanel2 = new Hammer.Manager(burger);
-
-        hammerPanel2.add( new Hammer.Tap({ event: 'doubletap', taps: 2 }) );
-        hammerPanel2.add( new Hammer.Tap({ event: 'singletap' }) );
-
-        hammerPanel2.get('doubletap').recognizeWith('singletap');
-        hammerPanel2.get('singletap').requireFailure('doubletap');
-
-        hammerPanel2
-                .on('singletap', function(e){
-                    sidepanel2.classList.toggle('open');
-                })
-                .on('singletap', function(e){
-                    sidepanel2.classList.toggle('open');
-                });
-    }());
-
-</script>
 </body>
 </html>
